@@ -1,21 +1,20 @@
 <template>
   <div id="trisStage">
     <div>
-      <trisSingleBox
-        v-for="box in 3"
-      ></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
     </div>
     <div>
-      <trisSingleBox
-        v-for="box in 3"
-      ></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
     </div>
     <div>
-      <trisSingleBox
-        v-for="box in 3"
-      ></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
+      <trisSingleBox></trisSingleBox>
     </div>
-
   </div>
 </template>
 
@@ -24,14 +23,28 @@ import TrisSingleBox from '@/components/trisSingleBox'
 
 export default {
   name: 'trisContainer',
+  data: function () {
+    return {
+      mossaPrecedente: 'o'
+    }
+  },
   components: {
     'trisSingleBox': TrisSingleBox
+  },
+  methods: {
+    updateMossa: function () {
+      if (this.mossaPrecedente === 'o') {
+        this.mossaPrecedente = 'x'
+      } else {
+        this.mossaPrecedente = 'o'
+      }
+    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  div#trisStage{
+  div#trisStage {
     width: 298px;
     height: 298px;
     margin: 0 auto;
