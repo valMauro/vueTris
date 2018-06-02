@@ -16,7 +16,7 @@ export default {
   div {
     height: 98px;
     width: 98px;
-    border: 1px solid #eee;
+    border: 1px solid #ccc;
     flex-direction: row;
     cursor: pointer;
 

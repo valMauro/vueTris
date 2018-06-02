@@ -1,19 +1,22 @@
 <template>
   <div id="trisStage">
     <div>
-      <trisSingleBox></trisSingleBox>
-      <trisSingleBox></trisSingleBox>
-      <trisSingleBox></trisSingleBox>
+      <trisSingleBox
+        v-for="trisBox in 3"
+        v-bind:key="trisBox"
+      ></trisSingleBox>
     </div>
     <div>
-      <trisSingleBox></trisSingleBox>
-      <trisSingleBox></trisSingleBox>
-      <trisSingleBox></trisSingleBox>
+      <trisSingleBox
+        v-for="trisBox in 3"
+        v-bind:key="trisBox"
+      ></trisSingleBox>
     </div>
     <div>
-      <trisSingleBox></trisSingleBox>
-      <trisSingleBox></trisSingleBox>
-      <trisSingleBox></trisSingleBox>
+      <trisSingleBox
+        v-for="trisBox in 3"
+        v-bind:key="trisBox"
+      ></trisSingleBox>
     </div>
   </div>
 </template>
@@ -23,7 +26,7 @@ import TrisSingleBox from '@/components/trisSingleBox'
 
 export default {
   name: 'trisContainer',
-  data: function () {
+  data () {
     return {
       mossaPrecedente: 'o'
     }
