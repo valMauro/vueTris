@@ -3,19 +3,19 @@
     <div>
       <trisSingleBox
         v-for="trisBox in 3"
-        v-bind:key="trisBox"
+        :key="trisBox"
       ></trisSingleBox>
     </div>
     <div>
       <trisSingleBox
         v-for="trisBox in 3"
-        v-bind:key="trisBox"
+        :key="trisBox"
       ></trisSingleBox>
     </div>
     <div>
       <trisSingleBox
         v-for="trisBox in 3"
-        v-bind:key="trisBox"
+        :key="trisBox"
       ></trisSingleBox>
     </div>
   </div>
