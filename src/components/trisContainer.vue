@@ -1,23 +1,11 @@
 <template>
   <div id="trisStage">
-    <div>
       <trisSingleBox
-        v-for="trisBox in 3"
-        :key="trisBox"
+        v-for="(index, value) in 9"
+        :key="value"
+        :number="index"
+        :actualMossa="mossaAttuale"
       ></trisSingleBox>
-    </div>
-    <div>
-      <trisSingleBox
-        v-for="trisBox in 3"
-        :key="trisBox"
-      ></trisSingleBox>
-    </div>
-    <div>
-      <trisSingleBox
-        v-for="trisBox in 3"
-        :key="trisBox"
-      ></trisSingleBox>
-    </div>
   </div>
 </template>
 
@@ -28,7 +16,7 @@ export default {
   name: 'trisContainer',
   data () {
     return {
-      mossaPrecedente: 'o'
+      mossaAttuale: 'o'
     }
   },
   components: {
@@ -36,10 +24,10 @@ export default {
   },
   methods: {
     updateMossa: function () {
-      if (this.mossaPrecedente === 'o') {
-        this.mossaPrecedente = 'x'
+      if (this.mossaAttuale === 'o') {
+        this.mossaAttuale = 'x'
       } else {
-        this.mossaPrecedente = 'o'
+        this.mossaAttuale = 'o'
       }
     }
   }
@@ -48,10 +36,11 @@ export default {
 
 <style scoped lang="scss">
   div#trisStage {
-    width: 298px;
+    width: 300px;
     height: 298px;
     margin: 0 auto;
     border: 1px solid #eee;
     display: flex;
+    flex-wrap: wrap;
   }
 </style>

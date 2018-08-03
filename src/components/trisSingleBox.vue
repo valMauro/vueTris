@@ -1,13 +1,32 @@
 <template>
-  <div >
-    <img src="../assets/letter-x.png" alt="x" class="hide">
-    <img src="../assets/tondo.png" alt="o" class="hide">
+  <div @click="doTurn()">
+    <img src="../assets/letter-x.png" alt="x" class="hide" v-if="clicked && actualMossa === 'x'">
+    <img src="../assets/tondo.png" alt="o" class="hide" v-if="clicked && actualMossa === 'o'">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'trisSingleBox'
+  name: 'trisSingleBox',
+  data: () => {
+    return {
+      clicked: false
+    }
+  },
+  props: {
+    number: {
+      type: Number
+    },
+    actualMossa: {
+      type: String
+    }
+  },
+  methods: {
+    doTurn: function () {
+      this.$parent.updateMossa()
+      this.clicked = true
+    }
+  }
 }
 </script>
 
