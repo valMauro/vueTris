@@ -1,6 +1,8 @@
 # tris
 
-> tic tac toe simple game
+> tic tac toe simple game.
+
+> This project is a personal project, for now it is under development ( not working yet )
 
 ## Build Setup
 
