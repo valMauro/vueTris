@@ -1,7 +1,15 @@
 <template>
   <div @click="doTurn()">
-    <img src="../assets/letter-x.png" alt="x" class="hide" v-if="clicked && actualMossa === 'x'">
-    <img src="../assets/tondo.png" alt="o" class="hide" v-if="clicked && actualMossa === 'o'">
+    <img
+      src="../assets/letter-x.png"
+      alt="x"
+      v-if="clicked && turn === 'x'"
+    >
+    <img
+      src="../assets/tondo.png"
+      alt="o"
+      v-if="clicked && turn === 'o'"
+    >
   </div>
 </template>
 
@@ -10,7 +18,9 @@ export default {
   name: 'trisSingleBox',
   data: () => {
     return {
-      clicked: false
+      clicked: false,
+      turn: '',
+      data: {}
     }
   },
   props: {
@@ -23,8 +33,19 @@ export default {
   },
   methods: {
     doTurn: function () {
+      if (this.clicked) {
+        return
+      }
+
       this.$parent.updateMossa()
       this.clicked = true
+      this.turn = this.actualMossa
+
+      this.data.cell = this.number
+      this.data.turn = this.turn
+      console.log('data --> ', this.data)
+      this.$emit('cellClicked', this.data)
+      console.log('evento sparato')
     }
   }
 }
