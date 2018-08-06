@@ -7,6 +7,8 @@
         :win="win"
         :actualMossa="mossaAttuale"
         @cellClicked="registerClick"
+        @resetFinished="resetValue=false"
+        :reset="resetValue"
       ></trisSingleBox>
       <p v-if="win" >ha vinto il giocatore {{ win }} -
         <span @click="reset">reset</span>
@@ -32,7 +34,8 @@ export default {
         cell7: '',
         cell8: '',
         cell9: ''
-      }
+      },
+      resetValue: false
     }
   },
   components: {
@@ -115,10 +118,11 @@ export default {
       this.cellsValue['cell' + obj.cell] = obj.turn
     },
     reset: function () {
-      console.log( 'AAAAA' );
-      for (let i = 0; i < this.cellsValue; i++) {
-        this.cellsValue[i] = ''
+      this.resetValue = true
+      for (let el in this.cellsValue) {
+        this.cellsValue[el] = ''
       }
+      this.mossaAttuale = 'o'
     }
   }
 }
@@ -132,5 +136,9 @@ export default {
     border: 1px solid #eee;
     display: flex;
     flex-wrap: wrap;
+
+    span {
+      cursor: pointer;
+    }
   }
 </style>

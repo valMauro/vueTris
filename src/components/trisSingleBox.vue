@@ -8,7 +8,7 @@
     <img
       src="../assets/tondo.png"
       alt="o"
-      v-if="clicked && turn === 'o'"
+      v-if="clicked && turn === 'o' "
     >
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
     win: {
       type: String,
       default: undefined
+    },
+    reset: {
+      type: Boolean
     }
   },
   methods: {
@@ -48,6 +51,24 @@ export default {
       this.data.cell = this.number
       this.data.turn = this.turn
       this.$emit('cellClicked', this.data)
+    }
+  },
+  watch: {
+    reset: function () {
+      if (this.reset) {
+        this.clicked = false
+        this.turn = ''
+        this.data = {}
+      }
+
+      let thisVueContext = this
+      setTimeout(
+        function () {
+          // thisVueContext.$parent.resetValue = false
+          thisVueContext.$emit('resetFinished')
+        },
+        1000
+      )
     }
   }
 }
