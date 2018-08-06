@@ -29,11 +29,15 @@ export default {
     },
     actualMossa: {
       type: String
+    },
+    win: {
+      type: String,
+      default: undefined
     }
   },
   methods: {
     doTurn: function () {
-      if (this.clicked) {
+      if (this.clicked || this.win) {
         return
       }
 
@@ -43,9 +47,7 @@ export default {
 
       this.data.cell = this.number
       this.data.turn = this.turn
-      console.log('data --> ', this.data)
       this.$emit('cellClicked', this.data)
-      console.log('evento sparato')
     }
   }
 }

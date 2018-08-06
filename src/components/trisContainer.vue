@@ -4,10 +4,13 @@
         v-for="(index, value) in 9"
         :key="value"
         :number="index"
+        :win="win"
         :actualMossa="mossaAttuale"
         @cellClicked="registerClick"
       ></trisSingleBox>
-      <p v-if="win" >ha vinto il giocatore {{ win }}</p>
+      <p v-if="win" >ha vinto il giocatore {{ win }} -
+        <span @click="reset">reset</span>
+      </p>
   </div>
 </template>
 
@@ -38,49 +41,65 @@ export default {
   computed: {
     win: function () {
       // orizzontali
-      if (this.cellsValue.cell1 === this.cellsValue.cell2 && this.cellsValue.cell2 === this.cellsValue.cell3 && this.cellsValue.cell3 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell1 === this.cellsValue.cell2 && this.cellsValue.cell2 === this.cellsValue.cell3 && this.cellsValue.cell3 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell1 === this.cellsValue.cell2 && this.cellsValue.cell2 === this.cellsValue.cell3) {
+        if (this.cellsValue.cell3 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell3 === 'x') {
+          return 'x'
+        }
       }
-      if (this.cellsValue.cell4 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell6 && this.cellsValue.cell6 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell4 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell6 && this.cellsValue.cell6 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell4 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell6) {
+        if (this.cellsValue.cell6 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell6 === 'x') {
+          return 'x'
+        }
       }
-      if (this.cellsValue.cell7 === this.cellsValue.cell8 && this.cellsValue.cell8 === this.cellsValue.cell9 && this.cellsValue.cell9 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell7 === this.cellsValue.cell8 && this.cellsValue.cell8 === this.cellsValue.cell9 && this.cellsValue.cell9 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell7 === this.cellsValue.cell8 && this.cellsValue.cell8 === this.cellsValue.cell9) {
+        if (this.cellsValue.cell9 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell9 === 'x') {
+          return 'x'
+        }
       }
 
       // verticali
-      if (this.cellsValue.cell1 === this.cellsValue.cell4 && this.cellsValue.cell4 === this.cellsValue.cell7 && this.cellsValue.cell7 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell1 === this.cellsValue.cell4 && this.cellsValue.cell4 === this.cellsValue.cell7 && this.cellsValue.cell7 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell1 === this.cellsValue.cell4 && this.cellsValue.cell4 === this.cellsValue.cell7) {
+        if (this.cellsValue.cell7 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell7 === 'x') {
+          return 'x'
+        }
       }
-      if (this.cellsValue.cell2 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell8 && this.cellsValue.cell8 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell2 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell8 && this.cellsValue.cell8 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell2 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell8) {
+        if (this.cellsValue.cell8 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell8 === 'x') {
+          return 'x'
+        }
       }
-      if (this.cellsValue.cell3 === this.cellsValue.cell6 && this.cellsValue.cell6 === this.cellsValue.cell9 && this.cellsValue.cell9 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell3 === this.cellsValue.cell6 && this.cellsValue.cell6 === this.cellsValue.cell9 && this.cellsValue.cell9 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell3 === this.cellsValue.cell6 && this.cellsValue.cell6 === this.cellsValue.cell9) {
+        if (this.cellsValue.cell9 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell9 === 'x') {
+          return 'x'
+        }
       }
 
       // diagonali
-      if (this.cellsValue.cell1 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell9 && this.cellsValue.cell9 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell1 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell9 && this.cellsValue.cell9 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell1 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell9) {
+        if (this.cellsValue.cell9 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell9 === 'x') {
+          return 'x'
+        }
       }
-      if (this.cellsValue.cell3 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell7 && this.cellsValue.cell7 === 'o') {
-        return 'o'
-      } else if (this.cellsValue.cell3 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell7 && this.cellsValue.cell7 === 'x') {
-        return 'x'
+      if (this.cellsValue.cell3 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell7) {
+        if (this.cellsValue.cell7 === 'o') {
+          return 'o'
+        } else if (this.cellsValue.cell7 === 'x') {
+          return 'x'
+        }
       }
     }
   },
@@ -94,7 +113,12 @@ export default {
     },
     registerClick: function (obj) {
       this.cellsValue['cell' + obj.cell] = obj.turn
-      console.log('obj --> ', obj)
+    },
+    reset: function () {
+      console.log( 'AAAAA' );
+      for (let i = 0; i < this.cellsValue; i++) {
+        this.cellsValue[i] = ''
+      }
     }
   }
 }
