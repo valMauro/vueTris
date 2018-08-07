@@ -14,13 +14,17 @@
 </template>
 
 <script>
+const DATA = {
+  turn: '',
+  cell: undefined
+}
 export default {
   name: 'trisSingleBox',
   data: () => {
     return {
       clicked: false,
       turn: '',
-      data: {}
+      data: Object.assign({}, DATA)
     }
   },
   props: {
@@ -43,8 +47,6 @@ export default {
       if (this.clicked || this.win) {
         return
       }
-
-      this.$parent.updateMossa()
       this.clicked = true
       this.turn = this.actualMossa
 
@@ -58,16 +60,12 @@ export default {
       if (this.reset) {
         this.clicked = false
         this.turn = ''
-        this.data = {}
+        this.data = Object.assign({}, DATA)
       }
-
-      let thisVueContext = this
-      setTimeout(
+      this.$nextTick(
         function () {
-          // thisVueContext.$parent.resetValue = false
-          thisVueContext.$emit('resetFinished')
-        },
-        1000
+          this.$emit('resetFinished')
+        }
       )
     }
   }

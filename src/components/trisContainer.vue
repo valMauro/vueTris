@@ -19,22 +19,24 @@
 <script>
 import TrisSingleBox from '@/components/trisSingleBox'
 
+const INITIAL_CELL_SITUATION = {
+  cell1: '',
+  cell2: '',
+  cell3: '',
+  cell4: '',
+  cell5: '',
+  cell6: '',
+  cell7: '',
+  cell8: '',
+  cell9: ''
+}
+
 export default {
   name: 'trisContainer',
   data () {
     return {
       mossaAttuale: 'o',
-      cellsValue: {
-        cell1: '',
-        cell2: '',
-        cell3: '',
-        cell4: '',
-        cell5: '',
-        cell6: '',
-        cell7: '',
-        cell8: '',
-        cell9: ''
-      },
+      cellsValue: Object.assign({}, INITIAL_CELL_SITUATION),
       resetValue: false
     }
   },
@@ -115,13 +117,12 @@ export default {
       }
     },
     registerClick: function (obj) {
-      this.cellsValue['cell' + obj.cell] = obj.turn
+      this.$set(this.cellsValue, 'cell' + obj.cell, obj.turn)
+      this.updateMossa()
     },
     reset: function () {
       this.resetValue = true
-      for (let el in this.cellsValue) {
-        this.cellsValue[el] = ''
-      }
+      this.cellsValue = Object.assign({}, INITIAL_CELL_SITUATION)
       this.mossaAttuale = 'o'
     }
   }
