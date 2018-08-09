@@ -7,7 +7,7 @@
         :win="win"
         :actualMossa="mossaAttuale"
         @cellClicked="registerClick"
-        @resetFinished="resetValue=false"
+        @resetFinished="resetValue = false"
         :reset="resetValue"
       ></trisSingleBox>
       <p v-if="win" >ha vinto il giocatore {{ win }} -
@@ -105,6 +105,11 @@ export default {
         } else if (this.cellsValue.cell7 === 'x') {
           return 'x'
         }
+      }
+
+      // patta
+      if (Object.entries(this.cellsValue).every(el => el[1] !== '')) {
+        return 'patta'
       }
     }
   },
