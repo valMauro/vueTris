@@ -10,7 +10,11 @@
         @resetFinished="resetValue = false"
         :reset="resetValue"
       ></trisSingleBox>
-      <p v-if="win" >ha vinto il giocatore {{ win }} -
+      <p v-if="win" >
+        <span v-if="win !== 'patta'">
+          ha vinto il giocatore
+        </span>
+        {{ win }} -
         <span @click="reset">reset</span>
       </p>
   </div>
