@@ -10,18 +10,17 @@
         @resetFinished="resetValue = false"
         :reset="resetValue"
       ></trisSingleBox>
-      <p v-if="win" >
-        <span v-if="win !== 'patta'">
-          ha vinto il giocatore
-        </span>
-        {{ win }} -
-        <span @click="reset">reset</span>
-      </p>
+      <winPopup
+        :winCondition="win"
+        @gameReset="reset"
+      >
+      </winPopup>
   </div>
 </template>
 
 <script>
 import TrisSingleBox from '@/components/trisSingleBox'
+import winPopup from '@/components/winPopup'
 
 const INITIAL_CELL_SITUATION = {
   cell1: '',
@@ -45,7 +44,8 @@ export default {
     }
   },
   components: {
-    'trisSingleBox': TrisSingleBox
+    'trisSingleBox': TrisSingleBox,
+    'winPopup': winPopup
   },
   computed: {
     win: function () {
