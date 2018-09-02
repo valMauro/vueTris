@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <trisContainer></trisContainer>
+    <trisContainer
+      :isReset="reset"
+      @resetEnd="endReset"
+      @winChanged="updateCondition"
+    ></trisContainer>
     <winPopup
       :winCondition="win"
-      @gameReset="gameReset"
-      @winChanged="updateCondition"> <!-- TODO: finire gli eventi    -->
+      @gameReset="newGame"
+    >
     </winPopup>
   </div>
 </template>
@@ -14,12 +18,21 @@ export default {
   name: 'App',
   data () {
     return {
-      win: undefined
+      win: undefined,
+      reset: false
     }
   },
   methods: {
+    endReset: function () {
+      console.log('aaaaaaaaa')
+      this.reset = false
+    },
     updateCondition: function (whoWin) {
       this.win = whoWin
+    },
+    newGame: function () {
+      this.reset = true
+      this.win = undefined
     }
   }
 }

@@ -16,7 +16,6 @@
 
 <script>
 import TrisSingleBox from '@/components/trisSingleBox'
-import winPopup from '@/components/winPopup'
 
 const INITIAL_CELL_SITUATION = {
   cell1: '',
@@ -40,8 +39,13 @@ export default {
     }
   },
   components: {
-    'trisSingleBox': TrisSingleBox,
-    'winPopup': winPopup
+    'trisSingleBox': TrisSingleBox
+  },
+  props: {
+    isReset: {
+      type: Boolean,
+      default: false
+    }
   },
   computed: {
     win: function () {
@@ -116,9 +120,19 @@ export default {
   watch: {
     win: function () {
       this.$emit('winChanged', this.win)
+    },
+    isReset: function () {
+      if (this.isReset) {
+        console.log('porca miseria!')
+        this.resetValue = this.isReset
+      }
     }
   },
   methods: {
+    finishGameReset: function () {
+      this.resetValue = false
+      this.$emit('resetEnd')
+    },
     updateMossa: function () {
       if (this.mossaAttuale === 'o') {
         this.mossaAttuale = 'x'
@@ -131,9 +145,15 @@ export default {
       this.updateMossa()
     },
     reset: function () {
-      this.resetValue = true
-      this.cellsValue = Object.assign({}, INITIAL_CELL_SITUATION)
-      this.mossaAttuale = 'o'
+      return new Promise(
+        function () {
+          this.resetValue = true
+          this.cellsValue = Object.assign({}, INITIAL_CELL_SITUATION)
+          this.mossaAttuale = 'o'
+        }
+      ).then(
+        this.finishGameReset()
+      )
     }
   }
 }
