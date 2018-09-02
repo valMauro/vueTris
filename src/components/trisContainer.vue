@@ -9,12 +9,8 @@
         @cellClicked="registerClick"
         @resetFinished="resetValue = false"
         :reset="resetValue"
+        v-model="win"
       ></trisSingleBox>
-      <winPopup
-        :winCondition="win"
-        @gameReset="reset"
-      >
-      </winPopup>
   </div>
 </template>
 
@@ -115,6 +111,11 @@ export default {
       if (Object.entries(this.cellsValue).every(el => el[1] !== '')) {
         return 'patta'
       }
+    }
+  },
+  watch: {
+    win: function () {
+      this.$emit('winChanged', this.win)
     }
   },
   methods: {

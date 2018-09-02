@@ -1,12 +1,27 @@
 <template>
   <div id="app">
     <trisContainer></trisContainer>
+    <winPopup
+      :winCondition="win"
+      @gameReset="gameReset"
+      @winChanged="updateCondition"> <!-- TODO: finire gli eventi    -->
+    </winPopup>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      win: undefined
+    }
+  },
+  methods: {
+    updateCondition: function (whoWin) {
+      this.win = whoWin
+    }
+  }
 }
 </script>
 
