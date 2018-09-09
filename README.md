@@ -2,7 +2,7 @@
 
 > tic tac toe simple game.
 
-> This project is a personal project, for now it is under development ( not working yet )
+> This project is a personal project, graphics is under development, the game logic is working :)
 
 ## Build Setup
 
