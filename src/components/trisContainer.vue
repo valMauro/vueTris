@@ -131,7 +131,6 @@ export default {
     isReset: function () {
       if (this.isReset) {
         console.log('porca miseria!')
-        this.resetValue = this.isReset
         this.reset()
       }
     }
@@ -148,7 +147,11 @@ export default {
       }
     },
     registerClick: function (obj) {
-      this.$set(this.cellsValue, 'cell' + obj.cell, obj.turn)
+      this.$set(
+        this.cellsValue,
+        'cell' + obj.cell,
+        obj.turn
+      )
       this.updateMossa()
     },
     reset: function () {
