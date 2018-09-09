@@ -7,7 +7,7 @@
         :win="win"
         :actualMossa="mossaAttuale"
         @cellClicked="registerClick"
-        @resetFinished="resetValue = false"
+        @resetFinished="finishGameReset"
         :reset="resetValue"
         v-model="win"
       ></trisSingleBox>
@@ -48,72 +48,79 @@ export default {
     }
   },
   computed: {
-    win: function () {
-      // orizzontali
-      if (this.cellsValue.cell1 === this.cellsValue.cell2 && this.cellsValue.cell2 === this.cellsValue.cell3) {
-        if (this.cellsValue.cell3 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell3 === 'x') {
-          return 'x'
+    win: {
+      get: function () {
+        // orizzontali
+        if (this.cellsValue.cell1 === this.cellsValue.cell2 && this.cellsValue.cell2 === this.cellsValue.cell3) {
+          if (this.cellsValue.cell3 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell3 === 'x') {
+            return 'x'
+          }
         }
-      }
-      if (this.cellsValue.cell4 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell6) {
-        if (this.cellsValue.cell6 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell6 === 'x') {
-          return 'x'
+        if (this.cellsValue.cell4 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell6) {
+          if (this.cellsValue.cell6 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell6 === 'x') {
+            return 'x'
+          }
         }
-      }
-      if (this.cellsValue.cell7 === this.cellsValue.cell8 && this.cellsValue.cell8 === this.cellsValue.cell9) {
-        if (this.cellsValue.cell9 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell9 === 'x') {
-          return 'x'
+        if (this.cellsValue.cell7 === this.cellsValue.cell8 && this.cellsValue.cell8 === this.cellsValue.cell9) {
+          if (this.cellsValue.cell9 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell9 === 'x') {
+            return 'x'
+          }
         }
-      }
 
-      // verticali
-      if (this.cellsValue.cell1 === this.cellsValue.cell4 && this.cellsValue.cell4 === this.cellsValue.cell7) {
-        if (this.cellsValue.cell7 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell7 === 'x') {
-          return 'x'
+        // verticali
+        if (this.cellsValue.cell1 === this.cellsValue.cell4 && this.cellsValue.cell4 === this.cellsValue.cell7) {
+          if (this.cellsValue.cell7 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell7 === 'x') {
+            return 'x'
+          }
         }
-      }
-      if (this.cellsValue.cell2 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell8) {
-        if (this.cellsValue.cell8 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell8 === 'x') {
-          return 'x'
+        if (this.cellsValue.cell2 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell8) {
+          if (this.cellsValue.cell8 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell8 === 'x') {
+            return 'x'
+          }
         }
-      }
-      if (this.cellsValue.cell3 === this.cellsValue.cell6 && this.cellsValue.cell6 === this.cellsValue.cell9) {
-        if (this.cellsValue.cell9 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell9 === 'x') {
-          return 'x'
+        if (this.cellsValue.cell3 === this.cellsValue.cell6 && this.cellsValue.cell6 === this.cellsValue.cell9) {
+          if (this.cellsValue.cell9 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell9 === 'x') {
+            return 'x'
+          }
         }
-      }
 
-      // diagonali
-      if (this.cellsValue.cell1 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell9) {
-        if (this.cellsValue.cell9 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell9 === 'x') {
-          return 'x'
+        // diagonali
+        if (this.cellsValue.cell1 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell9) {
+          if (this.cellsValue.cell9 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell9 === 'x') {
+            return 'x'
+          }
         }
-      }
-      if (this.cellsValue.cell3 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell7) {
-        if (this.cellsValue.cell7 === 'o') {
-          return 'o'
-        } else if (this.cellsValue.cell7 === 'x') {
-          return 'x'
+        if (this.cellsValue.cell3 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell7) {
+          if (this.cellsValue.cell7 === 'o') {
+            return 'o'
+          } else if (this.cellsValue.cell7 === 'x') {
+            return 'x'
+          }
         }
-      }
 
-      // patta
-      if (Object.entries(this.cellsValue).every(el => el[1] !== '')) {
-        return 'patta'
+        // patta
+        if (Object.entries(this.cellsValue).every(el => el[1] !== '')) {
+          return 'patta'
+        } else {
+          return undefined
+        }
+      },
+      set: function (newValue) {
+        return newValue
       }
     }
   },
@@ -125,13 +132,13 @@ export default {
       if (this.isReset) {
         console.log('porca miseria!')
         this.resetValue = this.isReset
+        this.reset()
       }
     }
   },
   methods: {
     finishGameReset: function () {
       this.resetValue = false
-      this.$emit('resetEnd')
     },
     updateMossa: function () {
       if (this.mossaAttuale === 'o') {
@@ -145,15 +152,20 @@ export default {
       this.updateMossa()
     },
     reset: function () {
-      return new Promise(
-        function () {
-          this.resetValue = true
-          this.cellsValue = Object.assign({}, INITIAL_CELL_SITUATION)
-          this.mossaAttuale = 'o'
-        }
-      ).then(
-        this.finishGameReset()
-      )
+      if (!this.resetValue) {
+        this.resetValue = true
+        this.cellsValue = Object.assign({}, INITIAL_CELL_SITUATION)
+        this.mossaAttuale = 'o'
+        this.win = undefined
+        console.log('Fatto!')
+
+        this.$nextTick(
+          function () {
+            this.finishGameReset()
+            this.$emit('resetEnd')
+          }
+        )
+      }
     }
   }
 }

@@ -62,11 +62,6 @@ export default {
         this.turn = ''
         this.data = Object.assign({}, DATA)
       }
-      this.$nextTick(
-        function () {
-          this.$emit('resetFinished')
-        }
-      )
     }
   }
 }
