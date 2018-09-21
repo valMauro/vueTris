@@ -52,64 +52,32 @@ export default {
       get: function () {
         // orizzontali
         if (this.cellsValue.cell1 === this.cellsValue.cell2 && this.cellsValue.cell2 === this.cellsValue.cell3) {
-          if (this.cellsValue.cell3 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell3 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell3
         }
         if (this.cellsValue.cell4 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell6) {
-          if (this.cellsValue.cell6 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell6 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell6
         }
         if (this.cellsValue.cell7 === this.cellsValue.cell8 && this.cellsValue.cell8 === this.cellsValue.cell9) {
-          if (this.cellsValue.cell9 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell9 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell9
         }
 
         // verticali
         if (this.cellsValue.cell1 === this.cellsValue.cell4 && this.cellsValue.cell4 === this.cellsValue.cell7) {
-          if (this.cellsValue.cell7 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell7 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell7
         }
         if (this.cellsValue.cell2 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell8) {
-          if (this.cellsValue.cell8 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell8 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell8
         }
         if (this.cellsValue.cell3 === this.cellsValue.cell6 && this.cellsValue.cell6 === this.cellsValue.cell9) {
-          if (this.cellsValue.cell9 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell9 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell9
         }
 
         // diagonali
         if (this.cellsValue.cell1 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell9) {
-          if (this.cellsValue.cell9 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell9 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell9
         }
         if (this.cellsValue.cell3 === this.cellsValue.cell5 && this.cellsValue.cell5 === this.cellsValue.cell7) {
-          if (this.cellsValue.cell7 === 'o') {
-            return 'o'
-          } else if (this.cellsValue.cell7 === 'x') {
-            return 'x'
-          }
+          return this.cellsValue.cell7
         }
 
         // patta
