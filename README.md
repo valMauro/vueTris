@@ -1,7 +1,5 @@
 # tris
 
-![tris](vueTris.png)
-
 > tic tac toe simple game.
 
 > This project is a personal project, graphics is under development, the game logic is working :)
