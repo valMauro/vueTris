@@ -1,12 +1,12 @@
 <template>
   <div v-if="winCondition" >
-    <div class="overlay"></div>
-    <div class="modal">
+    <div class="overlay" :class="{open: winCondition}"></div>
+    <div class="modal" :class="{open: winCondition}">
       <div class="modal-content">
         <span v-if="winCondition !== 'patta'">
           ha vinto il giocatore
         </span>
-        {{ winCondition }} -
+        {{ winCondition }}
         <span class="reset" @click="gameReset">reset</span>
       </div>
     </div>
@@ -58,11 +58,13 @@ export default {
       height: 200px;
       background-color: white;
       margin: auto;
+      margin-top: 20%;
       z-index: 11;
       border-radius: 15px;
+      box-shadow: 0px 0px 81px -1px rgba(0,0,0,0.75);
 
       .modal-content {
-        margin-top: 20%;
+        margin-top: 15%;
       }
     }
 
@@ -70,9 +72,12 @@ export default {
       padding: 15px;
       background-color: darkblue;
       color: white;
+      display: block;
+      margin: auto;
+      margin-top: 15px;
+      width: 60%;
       border-radius: 50px;
       cursor: pointer;
-
     }
 
   }
