@@ -3,7 +3,7 @@
     <div class="overlay" :class="{open: winCondition}"></div>
     <div class="modal" :class="{open: winCondition}">
       <div class="modal-content">
-        <span v-if="winCondition !== 'patta'">
+        <span v-if="winCondition !== 'pareggio'">
           ha vinto il giocatore
         </span>
         {{ winCondition }}
